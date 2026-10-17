@@ -193,7 +193,7 @@ Two things to notice:
 
 ### 3. CPU-bound work: the core count matters
 
-Sleeping threads use almost no CPU, so they overlap perfectly. Real computation is different. `CpuBound.java` counts primes, which is pure CPU work:
+Sleeping threads use almost no CPU, so they overlap perfectly. Real computation is different. `org.javaguy.lesson_01.CpuBound.java` counts primes, which is pure CPU work:
 
 ```java
 void main() throws InterruptedException {
@@ -254,7 +254,7 @@ That is real parallelism: four cores computing at the same instant. Notice it is
 ## Try it yourself
 
 1. In `ConcurrentKitchen`, delete the three `join()` calls. What does `Total` print now, and why?
-2. In `CpuBound`, change both loops from `4` jobs to `cores * 2` jobs. Does the parallel version still get faster as you add threads? At what point does it stop?
+2. In `org.javaguy.lesson_01.CpuBound`, change both loops from `4` jobs to `cores * 2` jobs. Does the parallel version still get faster as you add threads? At what point does it stop?
 3. Run `ConcurrentKitchen` five times in a row. Write down the order the `...` lines appear in each run.
 
 ---
