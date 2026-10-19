@@ -54,7 +54,7 @@ sequenceDiagram
 
 ### 1. Four ways to create a thread
 
-`FourWays.java`:
+`org.javaguy.lesson_02.FourWays.java`:
 
 ```java
 void main() throws InterruptedException {
@@ -122,7 +122,7 @@ main is done
 
 ### 2. `start()` vs `run()`
 
-`StartVsRun.java`:
+`org.javaguy.lesson_02.StartVsRun.java`:
 
 ```java
 void main() throws InterruptedException {
@@ -144,9 +144,9 @@ Running on: worker
 
 This is one of the most common beginner bugs because the program still *works*, and it just runs everything one after another. Nothing fails, and nothing runs concurrently.
 
-### 3. Interleaving: the scheduler is in charge
+### 3. org.javaguy.lesson_02.Interleaving: the scheduler is in charge
 
-`Interleaving.java`:
+`org.javaguy.lesson_02.Interleaving.java`:
 
 ```java
 void main() {
@@ -189,7 +189,7 @@ Also notice that `main` returned before either thread finished, and the program 
 
 ### 4. A thread can be started only once
 
-`StartTwice.java`:
+`org.javaguy.lesson_02.StartTwice.java`:
 
 ```java
 void main() throws InterruptedException {
@@ -204,7 +204,7 @@ void main() throws InterruptedException {
 working
 Exception in thread "main" java.lang.IllegalThreadStateException
 	at java.base/java.lang.Thread.start(Thread.java:1416)
-	at StartTwice.main(StartTwice.java:5)
+	at org.javaguy.lesson_02.StartTwice.main(org.javaguy.lesson_02.StartTwice.java:5)
 ```
 
 A finished thread is finished for good. To run the job again, create a new `Thread` with the same `Runnable`. Thread pools (Lesson 10) do the opposite: they keep a few threads alive and feed them new `Runnable`s.
@@ -213,7 +213,7 @@ A finished thread is finished for good. To run the job again, create a new `Thre
 
 An exception thrown inside a thread ends *that thread only*. It doesn't reach the code that called `start()`.
 
-`CrossThreadException.java`:
+`org.javaguy.lesson_02.CrossThreadException.java`:
 
 ```java
 void main() throws InterruptedException {
@@ -233,7 +233,7 @@ void main() throws InterruptedException {
 
 ```
 Exception in thread "failing-worker" java.lang.IllegalStateException: boom
-	at CrossThreadException.lambda$main$0(CrossThreadException.java:3)
+	at org.javaguy.lesson_02.CrossThreadException.lambda$main$0(org.javaguy.lesson_02.CrossThreadException.java:3)
 	at java.base/java.lang.Thread.run(Thread.java:1474)
 main carries on
 ```
@@ -245,7 +245,7 @@ The `catch` in `main` never runs. The exception belongs to `failing-worker`, and
 ## Try it yourself
 
 1. Give the `letters` and `numbers` threads names, and print `Thread.currentThread().getName()` on every line.
-2. Add `Thread.sleep(1)` inside each loop in `Interleaving` (catch the `InterruptedException`). How does that change the interleaving, and why?
+2. Add `Thread.sleep(1)` inside each loop in `org.javaguy.lesson_02.Interleaving` (catch the `InterruptedException`). How does that change the interleaving, and why?
 3. Look at [`multithread/Main.java`](../../src/main/java/org/javaguy/multithread/Main.java) in this repository. It starts three named threads that count down in different colours. Run it and explain why the colours mix.
 4. Use `Thread.setDefaultUncaughtExceptionHandler(...)` to log uncaught exceptions from any thread in your own format.
 
@@ -291,7 +291,7 @@ It keeps *what to do* separate from *who does it*. The task can be handed to a `
 <details>
 <summary>Reveal answer</summary>
 
-No. `start()` only makes a thread eligible to run. The scheduler decides the actual order, and it varies from run to run. You saw exactly this in the `Interleaving` output.
+No. `start()` only makes a thread eligible to run. The scheduler decides the actual order, and it varies from run to run. You saw exactly this in the `org.javaguy.lesson_02.Interleaving` output.
 
 </details>
 
