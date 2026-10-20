@@ -55,7 +55,7 @@ Two things surprise people:
 
 This program puts threads into each state on purpose and prints what it sees. It uses `synchronized`, `wait` and `notifyAll` a little ahead of time. They get full lessons of their own (06 and 08), and here they are just a way to create `BLOCKED` and `WAITING`.
 
-`ThreadStates.java`:
+`org.javaguy.lesson_03.ThreadStates.java`:
 
 ```java
 final Object lock = new Object();
@@ -135,7 +135,7 @@ A sleeping thread:
 
 ### 3. `join`: waiting for another thread to finish
 
-`JoinDemo.java`:
+`org.javaguy.lesson_03.JoinDemo.java`:
 
 ```java
 void main() throws InterruptedException {
@@ -185,7 +185,7 @@ slow thread finished in time? false
 
 The JVM exits when every **non-daemon** thread has finished. **Daemon** threads are background helpers that the JVM doesn't wait for. When the last non-daemon thread ends, the JVM exits and any daemon threads stop mid-step.
 
-`DaemonDemo.java`:
+`org.javaguy.lesson_03.DaemonDemo.java`:
 
 ```java
 void main() throws InterruptedException {
@@ -224,7 +224,7 @@ Remove `setDaemon(true)` and the program never exits. Rules:
 
 ### 5. Names, IDs, priorities: inspecting a thread
 
-`ThreadInfo.java`:
+`org.javaguy.lesson_03.ThreadInfo.java`:
 
 ```java
 void main() throws InterruptedException {
@@ -264,8 +264,8 @@ generating report...
 
 ## Try it yourself
 
-1. In `ThreadStates`, try to produce `WAITING` using `join()` instead of `wait()`. (Hint: you need a third thread that joins a thread that is still running.)
-2. In `DaemonDemo`, move `setDaemon(true)` to *after* `start()`. What happens?
+1. In `org.javaguy.lesson_03.ThreadStates`, try to produce `WAITING` using `join()` instead of `wait()`. (Hint: you need a third thread that joins a thread that is still running.)
+2. In `org.javaguy.lesson_03.DaemonDemo`, move `setDaemon(true)` to *after* `start()`. What happens?
 3. Start a non-daemon thread that loops forever, then take a thread dump with `jcmd`. Find it and read its state. Kill the program with Ctrl+C.
 4. Change `slow.join(Duration.ofMillis(300))` to a plain `slow.join()`, and remove `slow.interrupt()`. How long does the program run now?
 
