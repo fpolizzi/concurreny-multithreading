@@ -50,7 +50,7 @@ The detail that causes most interruption bugs: **when a blocking method throws `
 
 ### 1. Interrupting a sleeping thread
 
-`InterruptSleeping.java`:
+`org.javaguy.lesson_04.InterruptSleeping.java`:
 
 ```java
 void main() throws InterruptedException {
@@ -86,7 +86,7 @@ The program ends after about half a second, not ten. The `catch` block is where 
 
 A thread that never blocks never gets an exception, so it has to check the flag itself.
 
-`InterruptBusyLoop.java`:
+`org.javaguy.lesson_04.InterruptBusyLoop.java`:
 
 ```java
 void main() throws InterruptedException {
@@ -121,7 +121,7 @@ For long computations, check the flag at a natural boundary, such as once per lo
 
 This is the bug you will find in real codebases. Two workers run the same loop. One swallows the interrupt, and the other restores it.
 
-`SwallowedInterrupt.java`:
+`org.javaguy.lesson_04.SwallowedInterrupt.java`:
 
 ```java
 void main() throws InterruptedException {
@@ -244,8 +244,8 @@ Interruption is the standard mechanism. Thread pools use it to shut down (`shutd
 
 ## Try it yourself
 
-1. In `InterruptSleeping`, move the `try/catch` *inside* a `for` loop that sleeps 10 times. What does the worker do when interrupted? Fix it so the loop ends.
-2. Make `InterruptBusyLoop` use `Thread.interrupted()` (the static one) in the loop condition, and then print `isInterrupted()` after the loop. Why is it `false`?
+1. In `org.javaguy.lesson_04.InterruptSleeping`, move the `try/catch` *inside* a `for` loop that sleeps 10 times. What does the worker do when interrupted? Fix it so the loop ends.
+2. Make `org.javaguy.lesson_04.InterruptBusyLoop` use `Thread.interrupted()` (the static one) in the loop condition, and then print `isInterrupted()` after the loop. Why is it `false`?
 3. Rewrite `Poller` to use interruption only, with no `running` field. Which version stops faster when the sleep is 5 seconds instead of 100 ms?
 
 ---
